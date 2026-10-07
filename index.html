@@ -2297,6 +2297,14 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=3245605685829946&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel -->
+<script>
+document.addEventListener('click', function(e) {
+  var a = e.target.closest('a');
+  if (a && /wa\.me|whatsapp/i.test(a.href || '')) {
+    fbq('track', 'Lead', {content_name: 'WhatsApp Click'});
+  }
+}, true);
+</script>
 <meta name="facebook-domain-verification" content="s6k0we9xrmozvth4j7xxkrmf82528r" />
 </head>
 <body>
