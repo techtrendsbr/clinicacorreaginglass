@@ -150,8 +150,8 @@
 
     <style>
     /* =========================================
-       VARIÁVEIS DE MARCA E IDENTIDADE VISUAL
-       ========================================= */
+        VARIÁVEIS DE MARCA E IDENTIDADE VISUAL
+        ========================================= */
     :root {
         --color-primary: #1A2421;      
         --color-accent: #C5A059;       
@@ -562,7 +562,7 @@
         position: relative;
         background-color: #12100F;
         background-image: linear-gradient(180deg, rgba(12, 10, 9, 0.98) 0%, rgba(22, 19, 17, 0.95) 100%), 
-                          url('https://res.cloudinary.com/dabmzfood/image/upload/v1787495544/photo_2026-08-23_11-29-57_bczsk1.jpg');
+                        url('https://res.cloudinary.com/dabmzfood/image/upload/v1787495544/photo_2026-08-23_11-29-57_bczsk1.jpg');
         background-position: center;
         background-size: cover;
         z-index: 10;
@@ -2301,9 +2301,19 @@ src="https://www.facebook.com/tr?id=3245605685829946&ev=PageView&noscript=1"/></
 document.addEventListener('click', function(e) {
   var a = e.target.closest('a');
   if (a && /wa\.me|whatsapp/i.test(a.href || '')) {
-  fbq('track', 'Contact', {content_name: 'WhatsApp Click'});
-  fbq('track', 'Lead', {content_name: 'WhatsApp Click'});
-}
+    fbq('track', 'Contact', {content_name: 'WhatsApp Click'});
+    fbq('track', 'Lead', {content_name: 'WhatsApp Click'});
+    
+    // Tag de evento solicitada
+    if (typeof oaiq === 'function') {
+      oaiq(
+        "measure",
+        "custom",
+        { type: "custom" },
+        { custom_event_name: "contato_feito" }
+      );
+    }
+  }
 }, true);
 </script>
 <meta name="facebook-domain-verification" content="s6k0we9xrmozvth4j7xxkrmf82528r" />
@@ -2542,7 +2552,7 @@ document.addEventListener('click', function(e) {
                                 <span class="prof-badge-pill">Dra. Suzan Corrêa • Biomédica Esteta</span>
                                 <div class="prof-council">CRBM-5 014442</div>
                             </div>
-                            <p class="card-desc-text">Protocolos desenvolvidos que respeitam a individualidade e os objetivos de cada paciente.</p>
+                            <p class="card-desc-text">Protocolos desenvolvidos que respeiten a individualidade e os objetivos de cada paciente.</p>
                             <div class="card-activities-block">
                                 <span class="activities-title">Principais atividades</span>
                                 <ul class="activities-grid-list">
@@ -2603,7 +2613,7 @@ document.addEventListener('click', function(e) {
                                 <span class="prof-badge-pill">Ana Verícia Passos de Araújo • Fisioterapeuta</span>
                                 <div class="prof-council">CREFITO 31204-F</div>
                             </div>
-                            <p class="card-desc-text">Protocolos desenvolvidos que respeitam a individualidade e os objetivos de cada paciente.</p>
+                            <p class="card-desc-text">Protocolos desenvolvidos que respeitem a individualidade e os objetivos de cada paciente.</p>
                             <div class="card-activities-block">
                                 <span class="activities-title">Principais atividades</span>
                                 <ul class="activities-grid-list">
@@ -3106,6 +3116,9 @@ document.addEventListener('click', function(e) {
         }
 
         function sendCoworkingInterest() {
+            if (typeof oaiq === 'function') {
+                oaiq("measure", "custom", { type: "custom" }, { custom_event_name: "contato_feito" });
+            }
             window.open('https://wa.me/' + CLINIC_WHATSAPP + '?text=' + encodeURIComponent('Olá! Estive analisando os planos de Coworking da Corrêa Ginglass e gostaria de agendar uma visita profissional.'), '_blank');
             closePlansModal();
         }
